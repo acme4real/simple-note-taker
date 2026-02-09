@@ -1,18 +1,13 @@
-document.getElementById('save').addEventListener('click', () => {
-    const note = document.getElementById('note').value;
-    fetch('/save', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ note })
-    });
+// Form submission (client-side)
+document.getElementById('form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var msg = document.getElementById('message');
+  msg.textContent = 'Form submitted (demo). Connect to backend for real submit.';
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('/load')
-        .then(response => response.json())
-       .then(data => {
-            document.getElementById('note').value = data.note;
-        });
-});
+// Validation: require non-empty name and valid email
+function validate() {
+  var name = document.getElementById('name').value.trim();
+  var email = document.getElementById('email').value;
+  return name && email;
+}
